@@ -3,9 +3,15 @@ mariadb:
   environment:
     - USER=mariadb
     - PASS=p4ssw0rd
+solr:
+  image: castiron/typo3-solr:1.0.4
+redis:
+  image: redis
 typo3cms:
   image: hbokh/docker-typo3-cms:latest
   links:
     - mariadb:db
+    - solr
+    - redis
   ports:
-    - "80:80"
+    - "8002:80"
